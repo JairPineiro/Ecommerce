@@ -4,21 +4,24 @@ import { jwtDecode } from "jwt-decode";
 const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
-function AuthProvider({children}) {
+const AuthProvider = ({children}) => {
   const [isAuth, setIsAuth] = useState(false);
   const [userPayload, setUserPayload] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const login = (token) => {
     localStorage.setItem("token", token);
     const decode = jwtDecode(token);
     setUserPayload(decode);
     setIsAuth(true);
+    setIsAdmin(decode.role === "ADMIN");
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     setUserPayload(null);
     setIsAuth(false);
+    setIsAdmin(false);
   };
 
   useEffect(() => {
@@ -27,20 +30,23 @@ function AuthProvider({children}) {
       const decode = jwtDecode(token);
       setUserPayload(decode)
       setIsAuth(true);
+      setIsAdmin(decode.role === "ADMIN");
     }
   }, []);
 
-  const data = {
+  const value = {
     isAuth,
     userPayload,
+    isAdmin,
     login,
     logout,
   };
   return (
-  <AuthContext.Provider value={data}>
+  <AuthContext.Provider value={value}>
     {children}
   </AuthContext.Provider>
   )
 }
+
 
 export { AuthContext, AuthProvider} 

@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Dashboard, Login, Secret, Signup, Product } from '@/Pages'
+import { Home, Dashboard, Login, Secret, Signup, Product, CreateProduct, NotFound  } from '@/Pages'
 import { useAuthContext } from "../Hook/useAuthContext";
 
 export const RoutesIndex = () => {
-  const { isAuth } = useAuthContext();
+  const { isAuth, isAdmin } = useAuthContext();
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -12,6 +12,9 @@ export const RoutesIndex = () => {
       <Route path="/secret" element={ isAuth ? <Secret/> : <Login/>} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/product/:id" element={<Product/>} />
+      {isAdmin && <Route path="/create-product" element={<CreateProduct />} />}
+      <Route path="*" element={<NotFound />} /> 
+
     </Routes>
   );
 };

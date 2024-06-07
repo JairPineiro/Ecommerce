@@ -39,7 +39,9 @@ export const Product = () => {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">{product.product_name}</h5>
-              <p className="card-text">{product.description}</p>
+              <p className="card-text">Description: {product.description}</p>
+              <p className="card-text">Brand: {product.description}</p>
+              <p className="card-text">Category: {product.category}</p>
               <p className="card-text">
                 <small className="text-body-secondary">
                   Price: ${product.price}

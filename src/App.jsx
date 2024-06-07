@@ -1,15 +1,19 @@
 import Header from "@/Components/Header";
 import { BrowserRouter } from "react-router-dom";
 import { RoutesIndex } from "@/Routes/RoutesIndex";
-import { AuthProvider } from "./Context/AuthContext";
+import { AuthProvider,  } from "./Context/AuthContext";
+import { CartProvider } from "./Context/CartContext";
+
 function App() {
   return (
     <>
       <AuthProvider>
-        <BrowserRouter>
-          <Header />
-          <RoutesIndex />
-        </BrowserRouter>
+        <CartProvider>
+          <BrowserRouter>
+            <Header />
+            <RoutesIndex />
+          </BrowserRouter>
+        </CartProvider>
       </AuthProvider>
     </>
   );
