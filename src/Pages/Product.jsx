@@ -26,7 +26,7 @@ export const Product = () => {
   }
 
   return (
-    <>
+    <div className="product-container">
       <div className="card mb-3" style={{ maxWidth: 700 }}>
         <div className="row g-0">
           <div className="col-md-4">
@@ -39,9 +39,8 @@ export const Product = () => {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">{product.product_name}</h5>
-              <p className="card-text">Description: {product.description}</p>
-              <p className="card-text">Brand: {product.description}</p>
-              <p className="card-text">Category: {product.category}</p>
+              <p className="card-text">Descripción: {product.description}</p>
+              <p className="card-text">Categoría: {product.category}</p>
               <p className="card-text">
                 <small className="text-body-secondary">
                   Price: ${product.price}
@@ -51,6 +50,6 @@ export const Product = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

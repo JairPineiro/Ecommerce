@@ -3,7 +3,6 @@ import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 const AuthProvider = ({children}) => {
   const [isAuth, setIsAuth] = useState(false);
   const [userPayload, setUserPayload] = useState(null);

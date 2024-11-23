@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { createItemService } from "@/Services/itemServices";
 import { useAuthContext } from "@/Hook/useAuthContext";
-
+import axios from "axios";
 export const CreateProduct = () => {
   const { userPayload, isAuth } = useAuthContext();
   const [productName, setProductName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category,setCategory] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null); 
+  const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -19,16 +20,33 @@ export const CreateProduct = () => {
       return;
     }
 
-    const productData = { product_name: productName, description, price, category, image };
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("product_name", productName);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("category", category);
 
     try {
-      await createItemService(productData, localStorage.getItem("token"));
+      const imageResponse = await axios.post("http://localhost:3000/upload/upload-image", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      const imageUrl = imageResponse.data.imageUrl;
+      await createItemService({
+        product_name: productName,
+        description,
+        price,
+        category,
+        image: imageUrl,
+      }, localStorage.getItem("token"));
+
       alert("Product created successfully!");
       setProductName("");
       setDescription("");
       setPrice("");
       setCategory("");
-      setImage("");
+      setImage(null);
+      setImageUrl("");
       setError(null);
     } catch (error) {
       console.error("Error creating product:", error);
@@ -37,7 +55,7 @@ export const CreateProduct = () => {
   };
 
   return (
-    <div>
+    <div className="create-product">
       <h1>Create New Product</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
@@ -72,11 +90,11 @@ export const CreateProduct = () => {
           />
         </div>
         <div>
-          <label>Image URL</label>
+          <label>Image</label>
           <input
-            type="text"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            type="file"
+            accept="image/*" 
+            onChange={(e) => setImage(e.target.files[0])} 
           />
         </div>
         <button type="submit">Create Product</button>

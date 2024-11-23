@@ -17,7 +17,7 @@ export const SearchBar = ({ searchTerm, onSearch, onReset }) => {
   };
 
   return (
-    <div className="search-bar">
+    <div className="searchbar">
       <input
         type="text"
         value={inputValue}

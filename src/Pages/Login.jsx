@@ -10,6 +10,7 @@ export const Login = () => {
   const { login } = useAuthContext();
 
   const onSubmit = async (data) => {
+    console.log("Datos enviados al login:", data);
     try {
       const response = await loginUserService(data);
       if (response.status === 200) {
@@ -18,7 +19,11 @@ export const Login = () => {
         login(response.data.token);
       }
     } catch (error) {
-      console.log("Ocurrió un error en Login", error);
+      if (error.response) {
+        console.log("Error en la respuesta:", error.response);
+      } else {
+        console.log("Error en la solicitud:", error.message);
+      }
     }
   };
   return (
@@ -42,7 +47,7 @@ export const Login = () => {
             className="form-control"
             id="floatingPassword"
             placeholder="Password"
-            {...register("password")}
+            {...register("password", { required: "Password is required" })}
           />
           <p>{errors.password?.message}</p>
           <label htmlFor="floatingPassword">Password</label>
