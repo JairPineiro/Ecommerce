@@ -6,4 +6,5 @@ import { Secret } from "./Secret";
 import { Product } from "./Product";
 import { CreateProduct } from "./CreateProduct";
 import { NotFound } from "./NotFound";
-export { Dashboard, Home, Login, Secret, Signup, Product, CreateProduct, NotFound };
+import { Checkout } from "./Checkout";
+export { Dashboard, Home, Login, Secret, Signup, Product, CreateProduct, NotFound, Checkout };

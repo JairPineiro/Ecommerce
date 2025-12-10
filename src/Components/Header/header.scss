@@ -1,27 +1,37 @@
 // VARIABLES
-$menu-color: #3d3d3d;
+$primary-color: #86b3e5;
+$success-color: #4aa966;
+$light-color: #ffffff;
+$dark-color: #333333;
+$gray-color: #f5f5f5;
+$blue-light: #f0f4fb;
+$blue-lighter: #e8f1ff;
 
 // MIXINs para reutilizar estilos
 @mixin header-link {
-  color: $menu-color;
+  color: $light-color;
   text-decoration: none;
   letter-spacing: 2px;
+  font-weight: 600;
 }
 
 @mixin header-border($size: 2px) {
-  border-bottom: solid $size $menu-color;
+  border-bottom: solid $size $light-color;
 }
 
 // APLICANDO BEM EN SCSS
 .header {
-  background-color: #dadada;
+  background: linear-gradient(135deg, $primary-color 0%, #7aa8db 100%);
+  border-bottom: 3px solid $success-color;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
+  box-shadow: 0 4px 12px rgba(134, 179, 229, 0.3);
 
   &__logo {
     @include header-link;
+    font-size: 1.8em;
   }
 
   &__nav-list {
@@ -33,6 +43,8 @@ $menu-color: #3d3d3d;
 
   &__item-link {
     @include header-link;
+    transition: all 0.3s ease;
+    padding-bottom: 5px;
 
     //indicamos cual es el estilo activo
     &--is-active {
@@ -43,7 +55,24 @@ $menu-color: #3d3d3d;
       @include header-border;
     }
   }
+
+  &__item-button {
+    background-color: $success-color;
+    color: $light-color;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #3d9359;
+      transform: scale(1.05);
+    }
+  }
 }
+
 .cart-window {
   position: fixed;
   top: 50%;
@@ -52,12 +81,13 @@ $menu-color: #3d3d3d;
   width: 80%;
   max-width: 500px;
   max-height: 70%;
-  background-color: white;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, $light-color 0%, #f9fbff 100%);
+  box-shadow: 0px 8px 20px rgba(134, 179, 229, 0.3);
   padding: 20px;
   border-radius: 10px;
+  border: 2px solid $primary-color;
   overflow-y: auto; 
-  z-index: 1000,
+  z-index: 1000;
 }
 
 .cart-header {
@@ -65,6 +95,10 @@ $menu-color: #3d3d3d;
   justify-content: space-between;
   align-items: center;
   font-size: 1.5em;
+  color: $dark-color;
+  border-bottom: 2px solid $primary-color;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .cart-items {
@@ -75,11 +109,17 @@ $menu-color: #3d3d3d;
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  padding: 10px;
+  background: linear-gradient(135deg, $blue-light 0%, rgba(240, 244, 251, 0.5) 100%);
+  border-radius: 8px;
+  border-left: 3px solid $primary-color;
 }
 
 .cart-footer {
   text-align: center;
   margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid $primary-color;
 }
 
 // .cart-window ul {
@@ -111,39 +151,44 @@ $menu-color: #3d3d3d;
 .searchbar {
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin: 20px 0;
   justify-content: center;
+  gap: 10px;
 }
 
 .searchbar input {
-  padding: 10px;
+  padding: 12px 15px;
   font-size: 16px;
   width: 35%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 2px solid $primary-color;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
   outline: none;
-  transition: border 0.3s;
+  transition: all 0.3s;
 }
 
 .searchbar input:focus {
-  border-color: #007bff;
+  border-color: $success-color;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(74, 169, 102, 0.2);
 }
 
 .searchbar button {
-  padding: 5px 5px;
+  padding: 8px 20px;
   font-size: 16px;
-  margin-left: 5px;
   border: none;
-  background-color: #007bff;
+  background: linear-gradient(135deg, $primary-color 0%, #7aa8db 100%);
   color: white;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
+  font-weight: 600;
 }
 
 .searchbar button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(135deg, $success-color 0%, #3d9359 100%);
   cursor: pointer;
+  transform: translateY(-2px);
 }
 
 .searchbar button:focus {
@@ -155,41 +200,57 @@ $menu-color: #3d3d3d;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, $blue-light 0%, $blue-lighter 100%);
+  border-radius: 12px;
   width: 50%;
-  margin: 10px auto;
+  margin: 20px auto;
+  border-left: 5px solid $primary-color;
 }
 
 .create-product h1 {
   font-size: 2rem;
-  margin-bottom: 20px;
-  color: #333;
+  margin-bottom: 30px;
+  color: $dark-color;
+  font-weight: 700;
 }
 
 .create-product form {
   width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(134, 179, 229, 0.2);
 }
 
 .create-product div {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .create-product label {
   font-size: 1rem;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   display: block;
-  color: #555;
+  color: $dark-color;
+  font-weight: 600;
 }
 
 .create-product input,
 .create-product textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px 15px;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 2px solid $primary-color;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s;
+}
+
+.create-product input:focus,
+.create-product textarea:focus {
+  border-color: $success-color;
+  box-shadow: 0 0 10px rgba(74, 169, 102, 0.2);
+  background-color: #ffffff;
 }
 
 .create-product textarea {
@@ -198,36 +259,49 @@ $menu-color: #3d3d3d;
 }
 
 .create-product button {
-  padding: 10px 20px;
-  background-color: #007bff;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, $primary-color 0%, #7aa8db 100%);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  transition: all 0.3s;
+  width: 100%;
 }
 
 .create-product button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(135deg, $success-color 0%, #3d9359 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(74, 169, 102, 0.3);
 }
 
 .create-product .error {
-  color: red;
+  color: #d32f2f;
   margin-bottom: 15px;
+  background-color: #ffebee;
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 3px solid #d32f2f;
 }
 
-// Producto
 .product-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f7f7f7; 
+  padding: 20px;
+  background: linear-gradient(135deg, $blue-light 0%, $blue-lighter 100%);
 }
 
 .card {
   width: 100%;
   max-width: 700px;
+  background: linear-gradient(135deg, $light-color 0%, #f9fbff 100%);
+  border: none;
+  box-shadow: 0 8px 20px rgba(134, 179, 229, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
 }
 

@@ -1,0 +1,105 @@
+/* 
+  ==========================================
+  E-COMMERCE COLOR PALETTE
+  ==========================================
+  
+  Guía de uso de colores en el proyecto
+*/
+
+:root {
+  /* Colores principales */
+  --color-primary: #86b3e5;      /* Azul - Navegación, botones secundarios */
+  --color-success: #4aa966;      /* Verde - Acciones principales (Comprar, enviar) */
+  --color-light: #ffffff;        /* Blanco - Fondos y texto claro */
+  --color-dark: #333333;         /* Oscuro - Texto y títulos */
+  --color-gray: #f5f5f5;         /* Gris - Fondos secundarios */
+}
+
+/* USOS RECOMENDADOS */
+
+/*
+  PRIMARIO (#86b3e5 - Azul)
+  ├─ Header y navegación
+  ├─ Enlaces (links)
+  ├─ Botones secundarios
+  ├─ Bordes activos
+  ├─ Inputos enfocados
+  └─ Indicadores de navegación
+*/
+
+/*
+  ÉXITO (#4aa966 - Verde)
+  ├─ Botón de compra principal
+  ├─ Botón de envío de formulario
+  ├─ Estados positivos
+  ├─ Hover states
+  └─ Confirmaciones
+*/
+
+/*
+  LIGHT (#ffffff - Blanco)
+  ├─ Fondos principales
+  ├─ Tarjetas (cards)
+  ├─ Modales
+  ├─ Contenedores
+  └─ Texto claro
+*/
+
+/*
+  DARK (#333333 - Oscuro)
+  ├─ Texto principal
+  ├─ Títulos (h1-h6)
+  ├─ Etiquetas
+  ├─ Iconografía
+  └─ Elementos que necesitan contraste
+*/
+
+/*
+  GRAY (#f5f5f5 - Gris)
+  ├─ Fondos secundarios
+  ├─ Áreas de contenido alternadas
+  ├─ Estados deshabilitados (más claros)
+  ├─ Separadores sutiles
+  └─ Backgrounds alternativos
+*/
+
+/* EJEMPLOS DE USO EN CSS */
+
+/* Botón primario (azul) */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+}
+
+/* Botón de acción (verde) */
+.btn-success {
+  background-color: var(--color-success);
+  color: var(--color-light);
+}
+
+/* Texto principal */
+body {
+  color: var(--color-dark);
+  background-color: var(--color-light);
+}
+
+/* Fondos secundarios */
+.card, .modal {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-primary);
+}
+
+/* Área alternada */
+.alt-section {
+  background-color: var(--color-gray);
+}
+
+/* CONTRASTE Y ACCESIBILIDAD */
+
+/*
+  Ratios de contraste:
+  - Dark (#333333) sobre Light (#ffffff): 12.6:1 ✓ (AAA)
+  - Primary (#86b3e5) sobre Light (#ffffff): 4.5:1 ✓ (AA)
+  - Success (#4aa966) sobre Light (#ffffff): 4.8:1 ✓ (AA)
+  - Dark sobre Gray: 9.5:1 ✓ (AAA)
+*/

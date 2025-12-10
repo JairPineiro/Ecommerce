@@ -1,10 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getOneItemService } from "@/Services/itemServices";
+import { useCart } from "../Context/CartContext";
 
 export const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -46,6 +49,21 @@ export const Product = () => {
                   Price: ${product.price}
                 </small>
               </p>
+              <div className="d-flex align-items-center gap-2 mt-2">
+                <input
+                  type="number"
+                  min={1}
+                  value={quantity}
+                  onChange={(e) => setQuantity(Math.max(1, Number(e.target.value))) }
+                  style={{ width: "80px" }}
+                />
+                <button
+                  className="btn btn-success"
+                  onClick={() => addToCart(product, quantity)}
+                >
+                  Agregar al carrito
+                </button>
+              </div>
             </div>
           </div>
         </div>
