@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createItemService } from "@/Services/itemServices";
 import { useAuthContext } from "@/Hook/useAuthContext";
+import { API_URL } from '@/api/config';
 import axios from "axios";
 export const CreateProduct = () => {
   const { userPayload, isAuth } = useAuthContext();
@@ -28,7 +29,7 @@ export const CreateProduct = () => {
     formData.append("category", category);
 
     try {
-      const imageResponse = await axios.post("http://localhost:3000/upload/upload-image", formData, {
+      const imageResponse = await axios.post(`${API_URL}/upload/upload-image`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       const imageUrl = imageResponse.data.imageUrl;

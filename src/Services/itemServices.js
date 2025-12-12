@@ -1,12 +1,11 @@
 import axios from "axios";
+import { API_URL } from '@/api/config';
 
-const BASE_URL = 'http://localhost:3000'
+const getAllItemsService = () => axios.get(`${API_URL}/items`)
 
-const getAllItemsService = () => axios.get(`${BASE_URL}/items`)
+const getOneItemService = (id) => axios.get(`${API_URL}/items/${id}`)
 
-const getOneItemService = (id) => axios.get(`${BASE_URL}/items/${id}`)
-
-const createItemService = (data, jwtToken) => axios.post(`${BASE_URL}/items`,data, 
+const createItemService = (data, jwtToken) => axios.post(`${API_URL}/items`,data, 
 {headers: {Authorization:`Bearer ${jwtToken}`}})
 
 export {
